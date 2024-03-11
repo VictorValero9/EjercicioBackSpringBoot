@@ -1,12 +1,16 @@
 package banco.springboot.ejercicio.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Client {
     private Long id;
     private String name;
-    private List<BankAccount> accountList;
+    @JsonIgnore
+    private List<BankAccount> accountList = new ArrayList<>();
 
     public Client(long id, String name, List<BankAccount> accountList) {
         this.id = id;
@@ -16,6 +20,10 @@ public class Client {
 
     public Client() {
 
+    }
+    public void addBankAccount(BankAccount bankAccount) {
+        accountList.add(bankAccount);
+        bankAccount.setClient(this);
     }
 
     public Long getId() {
@@ -41,4 +49,5 @@ public class Client {
     public void setAccountList(List<BankAccount> accountList) {
         this.accountList = accountList;
     }
+
 }

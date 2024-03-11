@@ -30,4 +30,16 @@ public class BankAccountController {
         List<BankAccount> bankAccountList = bankAccountService.getAllBankAccounts();
         return new ResponseEntity<>(bankAccountList, HttpStatus.OK);
     }
+
+    @PostMapping("/{bankAccountId}/deposit")
+    public ResponseEntity<String> deposit(@PathVariable Long bankAccountId, @RequestParam double amount) {
+        bankAccountService.deposit(bankAccountId, amount);
+        return new ResponseEntity<>("Deposit successful", HttpStatus.OK);
+    }
+
+    @PostMapping("/{bankAccountId}/withdraw")
+    public ResponseEntity<String> withdraw(@PathVariable Long bankAccountId, @RequestParam double amount) {
+        bankAccountService.withdraw(bankAccountId, amount);
+        return new ResponseEntity<>("Withdrawal successful", HttpStatus.OK);
+    }
 }

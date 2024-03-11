@@ -26,6 +26,12 @@ public class ClientService {
         return clientRepository.save(client);
     }
     public List<BankAccount> getBankAccountsByClientID(Long clientID) {
+        // En el método findByClient_ID del repositorio
+        System.out.println("Calling findByClient_ID with clientID: " + clientID);
+        List<BankAccount> bankAccounts = clientRepository.findByClient_ID(clientID);
+        System.out.println("Found bank accounts: " + bankAccounts);
+
         return clientRepository.findByClient_ID(clientID);
+
     }
 }

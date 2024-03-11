@@ -26,15 +26,25 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args){
-
         Client client = new Client();
         client.setName("Juan Carlos");
         client.setId(1L);
-        clientService.saveClient(client);
 
         BankAccount bankAccount = new BankAccount();
         bankAccount.setIban("ES1234567890123456789012");
-        bankAccount.setClient(client);
+
+        // Añade la cuenta bancaria al cliente
+        client.addBankAccount(bankAccount);
+
+        // Guarda el cliente y la cuenta bancaria
+        clientService.saveClient(client);
+        bankAccountService.saveBankAccount(bankAccount);
+
+        // Después de crear el cliente y la cuenta bancaria en el método run de DataLoader
+        System.out.println("Client after creation: " + clientService.getClientById(1L));
+        System.out.println("Bank accounts after creation: " + clientService.getClientById(1L).getAccountList());
+
+
 
         List<Operation> operation = new ArrayList<>();
 

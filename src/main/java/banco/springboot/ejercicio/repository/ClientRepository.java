@@ -32,12 +32,14 @@ public class ClientRepository {
 
     public List<BankAccount> findByClient_ID(Long clientID) {
         Client client = clients.get(clientID);
-
+        // En el método findByClient_ID del repositorio
+        System.out.println("Calling findByClient_ID with clientID: " + clientID);
         if (client != null) {
             return client.getAccountList();
         } else {
             throw new RuntimeException("Client not found with ID: " + clientID);
         }
+
     }
 
 }
